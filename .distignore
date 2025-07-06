@@ -1,0 +1,84 @@
+# Development files
+.claude/
+.git/
+.github/
+.wordpress-org/
+node_modules/
+src/
+tests/
+
+# Build and config files
+.distignore
+.gitignore
+.editorconfig
+.eslintrc
+.eslintrc.js
+.eslintignore
+.nvmrc
+.phpcs.xml
+.phpcs.xml.dist
+composer.json
+composer.lock
+package.json
+package-lock.json
+webpack.config.js
+tsconfig.json
+babel.config.js
+jest.config.js
+phpunit.xml
+phpunit.xml.dist
+
+# Documentation (except readme.txt which WordPress.org needs)
+*.md
+!readme.txt
+CHANGELOG.md
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.project
+
+# Temporary and log files
+*.log
+*.tmp
+*.temp
+*.cache
+*.bak
+*.swp
+*~
+
+# Archives and binaries
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# Test files
+test/
+tests/
+phpunit/
+jest/
+cypress/
+e2e/
+
+# Build artifacts that shouldn't be in the plugin
+*.map
+*.sourcemap
+
+# Misc
+ROADMAP.md
+ROADMAP-PUBLIC.md
+TODO.txt
+NOTES.txt
+.env
+.env.*
