@@ -3,7 +3,7 @@
 	"apiVersion": 3,
 	"name": "vinyl-vault/collection",
 	"version": "1.0.0",
-	"title": "Vinyl Vault Collection",
+	"title": "Vinyl Vault",
 	"category": "widgets",
 	"icon": "album",
 	"description": "Display your Discogs vinyl collection beautifully",

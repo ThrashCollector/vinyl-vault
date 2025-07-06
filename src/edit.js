@@ -155,7 +155,7 @@ export default function Edit( { attributes, setAttributes } ) {
 				) : (
 					<div className="discogs-collection-placeholder">
 						<div className="discogs-collection-header">
-							<h3>{ __( 'Vinyl Vault Collection', 'vinyl-vault' ) }</h3>
+							<h3>{ __( 'Vinyl Vault', 'vinyl-vault' ) }</h3>
 							<p>{ __( 'Username:', 'vinyl-vault' ) } { username }</p>
 						</div>
 						<div className="discogs-collection-preview">

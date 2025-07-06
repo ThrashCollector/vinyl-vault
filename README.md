@@ -60,7 +60,7 @@ npm run plugin-zip
 
 ## Usage
 
-1. Add the "Vinyl Vault Collection" block to any post or page
+1. Add the "Vinyl Vault" block to any post or page
 2. Enter your Discogs username in the block settings
 3. (Optional) Add your Discogs API token for private collections
 4. Configure display options:

@@ -41,7 +41,7 @@ Vinyl Vault is a WordPress Gutenberg block that seamlessly integrates with the D
 
 = How It Works =
 
-1. Add the Vinyl Vault Collection block to any post or page
+1. Add the Vinyl Vault block to any post or page
 2. Enter your Discogs username
 3. Configure your display preferences
 4. Your collection appears beautifully formatted on your site
