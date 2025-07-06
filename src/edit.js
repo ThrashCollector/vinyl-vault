@@ -55,92 +55,92 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Discogs Settings', 'discogs-blocks' ) }>
+				<PanelBody title={ __( 'Vinyl Vault Settings', 'vinyl-vault' ) }>
 					<TextControl
-						label={ __( 'Discogs Username', 'discogs-blocks' ) }
+						label={ __( 'Discogs Username', 'vinyl-vault' ) }
 						value={ username }
 						onChange={ ( value ) => setAttributes( { username: value } ) }
-						help={ __( 'Enter your Discogs username', 'discogs-blocks' ) }
+						help={ __( 'Enter your Discogs username', 'vinyl-vault' ) }
 					/>
 					<TextControl
-						label={ __( 'API Key', 'discogs-blocks' ) }
+						label={ __( 'API Key', 'vinyl-vault' ) }
 						value={ apiKey }
 						onChange={ ( value ) => setAttributes( { apiKey: value } ) }
-						help={ __( 'Enter your Discogs API key (optional for public collections)', 'discogs-blocks' ) }
+						help={ __( 'Enter your Discogs API key (optional for public collections)', 'vinyl-vault' ) }
 						type="password"
 					/>
 				</PanelBody>
 				
-				<PanelBody title={ __( 'Display Options', 'discogs-blocks' ) }>
+				<PanelBody title={ __( 'Display Options', 'vinyl-vault' ) }>
 					<SelectControl
-						label={ __( 'Display Mode', 'discogs-blocks' ) }
+						label={ __( 'Display Mode', 'vinyl-vault' ) }
 						value={ displayMode }
 						options={ [
-							{ label: __( 'Grid', 'discogs-blocks' ), value: 'grid' },
-							{ label: __( 'List', 'discogs-blocks' ), value: 'list' },
-							{ label: __( 'Compact', 'discogs-blocks' ), value: 'compact' },
+							{ label: __( 'Grid', 'vinyl-vault' ), value: 'grid' },
+							{ label: __( 'List', 'vinyl-vault' ), value: 'list' },
+							{ label: __( 'Compact', 'vinyl-vault' ), value: 'compact' },
 						] }
 						onChange={ ( value ) => setAttributes( { displayMode: value } ) }
 					/>
 					{ displayMode === 'grid' && (
 						<RangeControl
-							label={ __( 'Grid Columns', 'discogs-blocks' ) }
+							label={ __( 'Grid Columns', 'vinyl-vault' ) }
 							value={ gridColumns }
 							onChange={ ( value ) => setAttributes( { gridColumns: value } ) }
 							min={ 1 }
 							max={ 8 }
-							help={ __( 'Number of columns in grid view', 'discogs-blocks' ) }
+							help={ __( 'Number of columns in grid view', 'vinyl-vault' ) }
 						/>
 					) }
 					<RangeControl
-						label={ __( 'Items Per Page', 'discogs-blocks' ) }
+						label={ __( 'Items Per Page', 'vinyl-vault' ) }
 						value={ itemsPerPage }
 						onChange={ ( value ) => setAttributes( { itemsPerPage: value } ) }
 						min={ 1 }
 						max={ 50 }
 					/>
 					<ToggleControl
-						label={ __( 'Show Artist', 'discogs-blocks' ) }
+						label={ __( 'Show Artist', 'vinyl-vault' ) }
 						checked={ showArtist }
 						onChange={ ( value ) => setAttributes( { showArtist: value } ) }
 					/>
 					<ToggleControl
-						label={ __( 'Show Title', 'discogs-blocks' ) }
+						label={ __( 'Show Title', 'vinyl-vault' ) }
 						checked={ showTitle }
 						onChange={ ( value ) => setAttributes( { showTitle: value } ) }
 					/>
 					<ToggleControl
-						label={ __( 'Show Year', 'discogs-blocks' ) }
+						label={ __( 'Show Year', 'vinyl-vault' ) }
 						checked={ showYear }
 						onChange={ ( value ) => setAttributes( { showYear: value } ) }
 					/>
 					<ToggleControl
-						label={ __( 'Show Label', 'discogs-blocks' ) }
+						label={ __( 'Show Label', 'vinyl-vault' ) }
 						checked={ showLabel }
 						onChange={ ( value ) => setAttributes( { showLabel: value } ) }
 					/>
 				</PanelBody>
 				
-				<PanelBody title={ __( 'Sort Options', 'discogs-blocks' ) }>
+				<PanelBody title={ __( 'Sort Options', 'vinyl-vault' ) }>
 					<SelectControl
-						label={ __( 'Sort By', 'discogs-blocks' ) }
+						label={ __( 'Sort By', 'vinyl-vault' ) }
 						value={ sortBy }
 						options={ [
-							{ label: __( 'Date Added', 'discogs-blocks' ), value: 'added' },
-							{ label: __( 'Artist', 'discogs-blocks' ), value: 'artist' },
-							{ label: __( 'Title', 'discogs-blocks' ), value: 'title' },
-							{ label: __( 'Year', 'discogs-blocks' ), value: 'year' },
-							{ label: __( 'Label', 'discogs-blocks' ), value: 'label' },
-							{ label: __( 'Catalog Number', 'discogs-blocks' ), value: 'catno' },
+							{ label: __( 'Date Added', 'vinyl-vault' ), value: 'added' },
+							{ label: __( 'Artist', 'vinyl-vault' ), value: 'artist' },
+							{ label: __( 'Title', 'vinyl-vault' ), value: 'title' },
+							{ label: __( 'Year', 'vinyl-vault' ), value: 'year' },
+							{ label: __( 'Label', 'vinyl-vault' ), value: 'label' },
+							{ label: __( 'Catalog Number', 'vinyl-vault' ), value: 'catno' },
 						] }
 						onChange={ ( value ) => setAttributes( { sortBy: value } ) }
 					/>
 					<SelectControl
-						label={ __( 'Sort Order', 'discogs-blocks' ) }
+						label={ __( 'Sort Order', 'vinyl-vault' ) }
 						value={ sortOrder }
 						options={ [
-							{ label: __( 'Ascending', 'discogs-blocks' ), value: 'asc' },
-							{ label: __( 'Descending', 'discogs-blocks' ), value: 'desc' },
+							{ label: __( 'Ascending', 'vinyl-vault' ), value: 'asc' },
+							{ label: __( 'Descending', 'vinyl-vault' ), value: 'desc' },
 						] }
 						onChange={ ( value ) => setAttributes( { sortOrder: value } ) }
 					/>
@@ -150,19 +150,19 @@ export default function Edit( { attributes, setAttributes } ) {
 			<div { ...useBlockProps() }>
 				{ ! username ? (
 					<Notice status="warning" isDismissible={ false }>
-						{ __( 'Please enter your Discogs username in the block settings.', 'discogs-blocks' ) }
+						{ __( 'Please enter your Discogs username in the block settings.', 'vinyl-vault' ) }
 					</Notice>
 				) : (
 					<div className="discogs-collection-placeholder">
 						<div className="discogs-collection-header">
-							<h3>{ __( 'Discogs Collection', 'discogs-blocks' ) }</h3>
-							<p>{ __( 'Username:', 'discogs-blocks' ) } { username }</p>
+							<h3>{ __( 'Vinyl Vault Collection', 'vinyl-vault' ) }</h3>
+							<p>{ __( 'Username:', 'vinyl-vault' ) } { username }</p>
 						</div>
 						<div className="discogs-collection-preview">
-							<p>{ __( 'Your collection will be displayed here.', 'discogs-blocks' ) }</p>
-							<p>{ __( 'Display mode:', 'discogs-blocks' ) } { displayMode }</p>
-							<p>{ __( 'Items per page:', 'discogs-blocks' ) } { itemsPerPage }</p>
-							<p>{ __( 'Sort by:', 'discogs-blocks' ) } { sortBy } ({ sortOrder })</p>
+							<p>{ __( 'Your collection will be displayed here.', 'vinyl-vault' ) }</p>
+							<p>{ __( 'Display mode:', 'vinyl-vault' ) } { displayMode }</p>
+							<p>{ __( 'Items per page:', 'vinyl-vault' ) } { itemsPerPage }</p>
+							<p>{ __( 'Sort by:', 'vinyl-vault' ) } { sortBy } ({ sortOrder })</p>
 						</div>
 					</div>
 				) }

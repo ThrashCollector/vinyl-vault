@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		const gridColumns = parseInt(container.dataset.gridColumns) || 4;
 		
 		if (!username) {
-			container.innerHTML = `<div class="discogs-collection-error">${escapeHtml(window.discogsBlocksL10n?.noUsername || 'No username provided')}</div>`;
+			container.innerHTML = `<div class="discogs-collection-error">${escapeHtml(window.vinylVaultL10n?.noUsername || 'No username provided')}</div>`;
 			return;
 		}
 		
@@ -37,11 +37,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		let totalPages = 1;
 		
 		async function fetchCollection(page = 1) {
-			container.innerHTML = `<div class="discogs-collection-loading">${escapeHtml(window.discogsBlocksL10n?.loadingCollection || 'Loading collection...')}</div>`;
+			container.innerHTML = `<div class="discogs-collection-loading">${escapeHtml(window.vinylVaultL10n?.loadingCollection || 'Loading collection...')}</div>`;
 			
 			try {
 				const headers = {
-					'User-Agent': 'DiscogsBlocksWordPress/1.0'
+					'User-Agent': 'VinylVaultWordPress/1.0'
 				};
 				if (apiKey) {
 					headers['Authorization'] = `Discogs token=${apiKey}`;
@@ -62,20 +62,20 @@ document.addEventListener('DOMContentLoaded', function() {
 				
 				if (!response.ok) {
 					if (response.status === 404) {
-						throw new Error(window.discogsBlocksL10n?.userNotFound || 'User not found. Please check the username.');
+						throw new Error(window.vinylVaultL10n?.userNotFound || 'User not found. Please check the username.');
 					} else if (response.status === 401) {
-						throw new Error(window.discogsBlocksL10n?.authFailed || 'Authentication failed. Please check your API key.');
+						throw new Error(window.vinylVaultL10n?.authFailed || 'Authentication failed. Please check your API key.');
 					} else if (response.status === 429) {
-						throw new Error(window.discogsBlocksL10n?.rateLimitExceeded || 'Rate limit exceeded. Please try again later or add an API key.');
+						throw new Error(window.vinylVaultL10n?.rateLimitExceeded || 'Rate limit exceeded. Please try again later or add an API key.');
 					}
-					throw new Error((window.discogsBlocksL10n?.fetchFailed || 'Failed to fetch collection:') + ' ' + response.statusText);
+					throw new Error((window.vinylVaultL10n?.fetchFailed || 'Failed to fetch collection:') + ' ' + response.statusText);
 				}
 				
 				const data = await response.json();
 				
 				// Validate response data
 				if (!data || !data.releases || !Array.isArray(data.releases)) {
-					throw new Error(window.discogsBlocksL10n?.invalidResponse || 'Invalid response from Discogs API');
+					throw new Error(window.vinylVaultL10n?.invalidResponse || 'Invalid response from Discogs API');
 				}
 				
 				totalPages = data.pagination ? data.pagination.pages : 1;
@@ -85,8 +85,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				renderPagination();
 				
 			} catch (error) {
-				console.error('Discogs Blocks Error:', error);
-				const errorPrefix = window.discogsBlocksL10n?.errorLoading || 'Error loading collection:';
+				console.error('Vinyl Vault Error:', error);
+				const errorPrefix = window.vinylVaultL10n?.errorLoading || 'Error loading collection:';
 				container.innerHTML = `<div class="discogs-collection-error">${escapeHtml(errorPrefix)} ${escapeHtml(error.message)}</div>`;
 			}
 		}
@@ -191,9 +191,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		function renderPagination() {
 			if (totalPages <= 1) return;
 			
-			const prevText = window.discogsBlocksL10n?.previous || 'Previous';
-			const nextText = window.discogsBlocksL10n?.next || 'Next';
-			const pageInfoText = window.discogsBlocksL10n?.pageInfo || 'Page %1$s of %2$s';
+			const prevText = window.vinylVaultL10n?.previous || 'Previous';
+			const nextText = window.vinylVaultL10n?.next || 'Next';
+			const pageInfoText = window.vinylVaultL10n?.pageInfo || 'Page %1$s of %2$s';
 			const pageInfo = pageInfoText.replace('%1$s', currentPage).replace('%2$s', totalPages);
 			
 			const paginationHtml = `

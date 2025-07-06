@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name:       Discogs Blocks
- * Plugin URI:        https://github.com/jlopez/Discogs-blocks
- * Description:       Display your Discogs collection on your WordPress site with Gutenberg blocks
+ * Plugin Name:       Vinyl Vault
+ * Plugin URI:        https://github.com/thrashcollector/vinyl-vault
+ * Description:       Display your Discogs vinyl collection beautifully on your WordPress site
  * Version:           1.0.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
@@ -10,10 +10,10 @@
  * Author URI:        https://github.com/jlopez
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       discogs-blocks
+ * Text Domain:       vinyl-vault
  * Domain Path:       /languages
  *
- * @package           discogs-blocks
+ * @package           vinyl-vault
  */
 
 // Exit if accessed directly.
@@ -24,9 +24,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Define plugin constants
  */
-define( 'DISCOGS_BLOCKS_VERSION', '1.0.0' );
-define( 'DISCOGS_BLOCKS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'DISCOGS_BLOCKS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'VINYL_VAULT_VERSION', '1.0.0' );
+define( 'VINYL_VAULT_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'VINYL_VAULT_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
@@ -35,39 +35,39 @@ define( 'DISCOGS_BLOCKS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function discogs_blocks_init() {
+function vinyl_vault_init() {
 	register_block_type( __DIR__ . '/build', array(
-		'render_callback' => 'discogs_blocks_render_callback',
+		'render_callback' => 'vinyl_vault_render_callback',
 	) );
 }
-add_action( 'init', 'discogs_blocks_init' );
+add_action( 'init', 'vinyl_vault_init' );
 
 /**
  * Enqueue block assets and localize script
  */
-function discogs_blocks_enqueue_scripts() {
+function vinyl_vault_enqueue_scripts() {
 	// Only localize if our block script is enqueued
-	if ( wp_script_is( 'discogs-blocks-collection-view-script' ) ) {
+	if ( wp_script_is( 'vinyl-vault-collection-view-script' ) ) {
 		wp_localize_script(
-			'discogs-blocks-collection-view-script',
-			'discogsBlocksL10n',
+			'vinyl-vault-collection-view-script',
+			'vinylVaultL10n',
 			array(
-				'noUsername' => __( 'No username provided', 'discogs-blocks' ),
-				'loadingCollection' => __( 'Loading collection...', 'discogs-blocks' ),
-				'userNotFound' => __( 'User not found. Please check the username.', 'discogs-blocks' ),
-				'authFailed' => __( 'Authentication failed. Please check your API key.', 'discogs-blocks' ),
-				'rateLimitExceeded' => __( 'Rate limit exceeded. Please try again later or add an API key.', 'discogs-blocks' ),
-				'fetchFailed' => __( 'Failed to fetch collection:', 'discogs-blocks' ),
-				'errorLoading' => __( 'Error loading collection:', 'discogs-blocks' ),
-				'invalidResponse' => __( 'Invalid response from Discogs API', 'discogs-blocks' ),
-				'previous' => __( 'Previous', 'discogs-blocks' ),
-				'next' => __( 'Next', 'discogs-blocks' ),
-				'pageInfo' => __( 'Page %1$s of %2$s', 'discogs-blocks' ),
+				'noUsername' => __( 'No username provided', 'vinyl-vault' ),
+				'loadingCollection' => __( 'Loading collection...', 'vinyl-vault' ),
+				'userNotFound' => __( 'User not found. Please check the username.', 'vinyl-vault' ),
+				'authFailed' => __( 'Authentication failed. Please check your API key.', 'vinyl-vault' ),
+				'rateLimitExceeded' => __( 'Rate limit exceeded. Please try again later or add an API key.', 'vinyl-vault' ),
+				'fetchFailed' => __( 'Failed to fetch collection:', 'vinyl-vault' ),
+				'errorLoading' => __( 'Error loading collection:', 'vinyl-vault' ),
+				'invalidResponse' => __( 'Invalid response from Discogs API', 'vinyl-vault' ),
+				'previous' => __( 'Previous', 'vinyl-vault' ),
+				'next' => __( 'Next', 'vinyl-vault' ),
+				'pageInfo' => __( 'Page %1$s of %2$s', 'vinyl-vault' ),
 			)
 		);
 	}
 }
-add_action( 'wp_enqueue_scripts', 'discogs_blocks_enqueue_scripts', 20 );
+add_action( 'wp_enqueue_scripts', 'vinyl_vault_enqueue_scripts', 20 );
 
 /**
  * Server-side rendering callback for the block
@@ -75,7 +75,7 @@ add_action( 'wp_enqueue_scripts', 'discogs_blocks_enqueue_scripts', 20 );
  * @param array $attributes Block attributes.
  * @return string Block markup.
  */
-function discogs_blocks_render_callback( $attributes ) {
+function vinyl_vault_render_callback( $attributes ) {
 	// Sanitize attributes
 	$username = ! empty( $attributes['username'] ) ? sanitize_text_field( $attributes['username'] ) : '';
 	$api_key = ! empty( $attributes['apiKey'] ) ? sanitize_text_field( $attributes['apiKey'] ) : '';
@@ -96,7 +96,7 @@ function discogs_blocks_render_callback( $attributes ) {
 	$grid_columns = max( 1, min( 8, $grid_columns ) );
 	
 	// Build the block markup
-	$class_name = 'wp-block-discogs-blocks-collection';
+	$class_name = 'wp-block-vinyl-vault-collection';
 	if ( ! empty( $attributes['align'] ) ) {
 		$class_name .= ' align' . $attributes['align'];
 	}
@@ -139,7 +139,7 @@ function discogs_blocks_render_callback( $attributes ) {
 /**
  * Load plugin textdomain
  */
-function discogs_blocks_load_textdomain() {
-	load_plugin_textdomain( 'discogs-blocks', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+function vinyl_vault_load_textdomain() {
+	load_plugin_textdomain( 'vinyl-vault', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
-add_action( 'init', 'discogs_blocks_load_textdomain' );
+add_action( 'init', 'vinyl_vault_load_textdomain' );

@@ -1,7 +1,7 @@
 {
-  "name": "discogs-blocks",
+  "name": "vinyl-vault",
   "version": "1.0.0",
-  "description": "WordPress Gutenberg block to display your Discogs collection",
+  "description": "WordPress Gutenberg block to display your Discogs vinyl collection beautifully",
   "author": "jlopez",
   "license": "GPL-2.0-or-later",
   "main": "build/index.js",
@@ -13,7 +13,7 @@
     "packages-update": "wp-scripts packages-update",
     "plugin-zip": "wp-scripts plugin-zip",
     "start": "wp-scripts start",
-    "make-pot": "wp i18n make-pot . languages/discogs-blocks.pot --exclude=node_modules,build,src"
+    "make-pot": "wp i18n make-pot . languages/vinyl-vault.pot --exclude=node_modules,build,src"
   },
   "devDependencies": {
     "@wordpress/scripts": "^26.19.0"

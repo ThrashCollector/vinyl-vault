@@ -1,10 +1,10 @@
-# Discogs Blocks
+# Vinyl Vault
 
-A WordPress Gutenberg block that allows users to display their Discogs collection on their website.
+A WordPress Gutenberg block that beautifully displays your Discogs vinyl collection on your website.
 
 ## Description
 
-Discogs Blocks integrates with the Discogs API to fetch and display your vinyl record collection directly on your WordPress site. The block provides customizable display options and supports multiple layout modes.
+Vinyl Vault integrates with the Discogs API to fetch and display your vinyl record collection directly on your WordPress site. The block provides customizable display options and supports multiple layout modes.
 
 ## Features
 
@@ -25,12 +25,12 @@ Discogs Blocks integrates with the Discogs API to fetch and display your vinyl r
 1. Clone or download this repository to your WordPress plugins directory:
    ```bash
    cd wp-content/plugins/
-   git clone https://github.com/jlopez/Discogs-blocks.git
+   git clone https://github.com/thrashcollector/vinyl-vault.git
    ```
 
 2. Install dependencies:
    ```bash
-   cd Discogs-blocks
+   cd vinyl-vault
    npm install
    ```
 
@@ -60,7 +60,7 @@ npm run plugin-zip
 
 ## Usage
 
-1. Add the "Discogs Collection" block to any post or page
+1. Add the "Vinyl Vault Collection" block to any post or page
 2. Enter your Discogs username in the block settings
 3. (Optional) Add your Discogs API token for private collections
 4. Configure display options:
