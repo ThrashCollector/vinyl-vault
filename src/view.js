@@ -153,14 +153,29 @@ document.addEventListener('DOMContentLoaded', function() {
 				}
 				
 				if (showLabel && info.labels && info.labels.length > 0) {
+					// Remove duplicates based on label ID or name
+					const uniqueLabels = [];
+					const seenLabels = new Set();
+					
+					info.labels.forEach(label => {
+						const identifier = label.id || label.name;
+						if (!seenLabels.has(identifier)) {
+							seenLabels.add(identifier);
+							uniqueLabels.push(label);
+						}
+					});
+					
 					// Create label links
-					const labelLinks = info.labels.map(label => {
+					const labelLinks = uniqueLabels.map(label => {
+						// Remove disambiguation numbers like "(2)" from label names
+						const cleanName = label.name.replace(/\s*\(\d+\)\s*$/, '');
+						
 						// Labels can have an ID for direct linking
 						if (label.id) {
 							const labelUrl = `https://www.discogs.com/label/${label.id}`;
-							return `<a href="${escapeHtml(labelUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label.name)}</a>`;
+							return `<a href="${escapeHtml(labelUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(cleanName)}</a>`;
 						}
-						return escapeHtml(label.name);
+						return escapeHtml(cleanName);
 					}).join(', ');
 					html += `<div class="discogs-item-label">${labelLinks}</div>`;
 				}
