@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		const showLabel = container.dataset.showLabel === 'true';
 		const sortBy = container.dataset.sortBy || 'added';
 		const sortOrder = container.dataset.sortOrder || 'desc';
+		const gridColumns = parseInt(container.dataset.gridColumns) || 4;
 		
 		if (!username) {
 			container.innerHTML = '<div class="discogs-collection-error">No username provided</div>';
@@ -107,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		
 		function renderCollection(releases) {
-			let html = `<div class="discogs-collection-${displayMode}">`;
+			let html = `<div class="discogs-collection-${displayMode}" ${displayMode === 'grid' ? `data-columns="${gridColumns}"` : ''}>`;
 			
 			releases.forEach(release => {
 				const info = release.basic_information;

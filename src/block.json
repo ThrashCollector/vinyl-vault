@@ -59,6 +59,12 @@
 			"type": "string",
 			"default": "desc",
 			"enum": ["asc", "desc"]
+		},
+		"gridColumns": {
+			"type": "number",
+			"default": 4,
+			"minimum": 1,
+			"maximum": 8
 		}
 	}
 }

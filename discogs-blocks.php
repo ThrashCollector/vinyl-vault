@@ -54,6 +54,7 @@ function discogs_blocks_render_callback( $attributes ) {
 	$api_key = ! empty( $attributes['apiKey'] ) ? sanitize_text_field( $attributes['apiKey'] ) : '';
 	$display_mode = ! empty( $attributes['displayMode'] ) ? sanitize_text_field( $attributes['displayMode'] ) : 'grid';
 	$items_per_page = ! empty( $attributes['itemsPerPage'] ) ? absint( $attributes['itemsPerPage'] ) : 12;
+	$grid_columns = ! empty( $attributes['gridColumns'] ) ? absint( $attributes['gridColumns'] ) : 4;
 	
 	// Ensure display mode is valid
 	$valid_modes = array( 'grid', 'list', 'compact' );
@@ -63,6 +64,9 @@ function discogs_blocks_render_callback( $attributes ) {
 	
 	// Ensure items per page is within reasonable bounds
 	$items_per_page = max( 1, min( 50, $items_per_page ) );
+	
+	// Ensure grid columns is within reasonable bounds
+	$grid_columns = max( 1, min( 8, $grid_columns ) );
 	
 	// Build the block markup
 	$class_name = 'wp-block-discogs-blocks-collection';
@@ -82,7 +86,8 @@ function discogs_blocks_render_callback( $attributes ) {
 				data-show-year="%s" 
 				data-show-label="%s"
 				data-sort-by="%s"
-				data-sort-order="%s">
+				data-sort-order="%s"
+				data-grid-columns="%d">
 				<div class="discogs-collection-loading">%s</div>
 			</div>
 		</div>',
@@ -97,6 +102,7 @@ function discogs_blocks_render_callback( $attributes ) {
 		esc_attr( $attributes['showLabel'] ? 'true' : 'false' ),
 		esc_attr( ! empty( $attributes['sortBy'] ) ? $attributes['sortBy'] : 'added' ),
 		esc_attr( ! empty( $attributes['sortOrder'] ) ? $attributes['sortOrder'] : 'desc' ),
+		esc_attr( $grid_columns ),
 		esc_html__( 'Loading collection...', 'discogs-blocks' )
 	);
 	

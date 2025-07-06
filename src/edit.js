@@ -48,7 +48,8 @@ export default function Edit( { attributes, setAttributes } ) {
 		showYear,
 		showLabel,
 		sortBy,
-		sortOrder
+		sortOrder,
+		gridColumns
 	} = attributes;
 
 	return (
@@ -81,6 +82,16 @@ export default function Edit( { attributes, setAttributes } ) {
 						] }
 						onChange={ ( value ) => setAttributes( { displayMode: value } ) }
 					/>
+					{ displayMode === 'grid' && (
+						<RangeControl
+							label={ __( 'Grid Columns', 'discogs-blocks' ) }
+							value={ gridColumns }
+							onChange={ ( value ) => setAttributes( { gridColumns: value } ) }
+							min={ 1 }
+							max={ 8 }
+							help={ __( 'Number of columns in grid view', 'discogs-blocks' ) }
+						/>
+					) }
 					<RangeControl
 						label={ __( 'Items Per Page', 'discogs-blocks' ) }
 						value={ itemsPerPage }

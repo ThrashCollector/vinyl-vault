@@ -32,6 +32,7 @@ export default function save( { attributes } ) {
 				data-show-label={ attributes.showLabel }
 				data-sort-by={ attributes.sortBy }
 				data-sort-order={ attributes.sortOrder }
+				data-grid-columns={ attributes.gridColumns }
 			>
 				<div className="discogs-collection-loading">Loading collection...</div>
 			</div>
