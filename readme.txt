@@ -1,9 +1,9 @@
 === Vinyl Vault ===
 Contributors: jlopez
-Donate link: https://example.com/donate
-Tags: discogs, music, collection, vinyl, records, gutenberg, block
+Donate link: https://buymeacoffee.com/thrashcollector
+Tags: discogs, vinyl, music, collection, records
 Requires at least: 6.0
-Tested up to: 6.4
+Tested up to: 6.8
 Stable tag: 1.0.0
 Requires PHP: 7.4
 License: GPLv2 or later

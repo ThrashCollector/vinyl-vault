@@ -62,6 +62,7 @@ function vinyl_vault_enqueue_scripts() {
 				'invalidResponse' => __( 'Invalid response from Discogs API', 'vinyl-vault' ),
 				'previous' => __( 'Previous', 'vinyl-vault' ),
 				'next' => __( 'Next', 'vinyl-vault' ),
+				/* translators: 1: Current page number, 2: Total number of pages */
 				'pageInfo' => __( 'Page %1$s of %2$s', 'vinyl-vault' ),
 			)
 		);
@@ -130,7 +131,7 @@ function vinyl_vault_render_callback( $attributes ) {
 		esc_attr( ! empty( $attributes['sortBy'] ) ? $attributes['sortBy'] : 'added' ),
 		esc_attr( ! empty( $attributes['sortOrder'] ) ? $attributes['sortOrder'] : 'desc' ),
 		esc_attr( $grid_columns ),
-		esc_html__( 'Loading collection...', 'discogs-blocks' )
+		esc_html__( 'Loading collection...', 'vinyl-vault' )
 	);
 	
 	return $block_content;
