@@ -17,3 +17,4 @@ Thumbs.db
 
 # WordPress
 *.zip
+.claude/settings.local.json
