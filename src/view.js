@@ -113,21 +113,37 @@ document.addEventListener('DOMContentLoaded', function() {
 				const info = release.basic_information;
 				const imageUrl = info.cover_image || info.thumb;
 				
+				// Build the release URL - Discogs uses format: /release/{id}
+				const releaseUrl = `https://www.discogs.com/release/${release.id}`;
+				
 				html += '<div class="discogs-item">';
 				
 				if (imageUrl) {
+					html += `<a href="${escapeHtml(releaseUrl)}" target="_blank" rel="noopener noreferrer">`;
 					html += `<img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(info.title)}" class="discogs-item-image" loading="lazy">`;
+					html += `</a>`;
 				}
 				
 				html += '<div class="discogs-item-details">';
 				
-				if (showArtist && info.artists && info.artists.length > 0) {
-					const artistNames = info.artists.map(artist => escapeHtml(artist.name)).join(', ');
-					html += `<div class="discogs-item-artist">${artistNames}</div>`;
+				if (showTitle) {
+					html += `<div class="discogs-item-title"><a href="${escapeHtml(releaseUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(info.title)}</a></div>`;
 				}
 				
-				if (showTitle) {
-					html += `<div class="discogs-item-title">${escapeHtml(info.title)}</div>`;
+				if (showArtist && info.artists && info.artists.length > 0) {
+					// Create artist links
+					const artistLinks = info.artists.map(artist => {
+						// Remove disambiguation numbers like "(2)" from artist names
+						const cleanName = artist.name.replace(/\s*\(\d+\)\s*$/, '');
+						
+						// Artists can have an ID for direct linking
+						if (artist.id) {
+							const artistUrl = `https://www.discogs.com/artist/${artist.id}`;
+							return `<a href="${escapeHtml(artistUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(cleanName)}</a>`;
+						}
+						return escapeHtml(cleanName);
+					}).join(', ');
+					html += `<div class="discogs-item-artist">${artistLinks}</div>`;
 				}
 				
 				if (showYear && info.year) {

@@ -84,19 +84,50 @@
 
 	// Common item styles
 	.discogs-item-artist {
-		font-weight: bold;
+		font-size: 0.9em;
 		margin-bottom: 0.25rem;
+		color: #555;
+		
+		a {
+			color: inherit;
+			text-decoration: none;
+			
+			&:hover {
+				text-decoration: underline;
+				color: #0073aa;
+			}
+		}
 	}
 
 	.discogs-item-title {
-		font-size: 0.9em;
+		font-weight: bold;
+		font-size: 1.1em;
 		margin-bottom: 0.25rem;
+		
+		a {
+			color: inherit;
+			text-decoration: none;
+			
+			&:hover {
+				text-decoration: underline;
+				color: #0073aa;
+			}
+		}
 	}
 
 	.discogs-item-year,
 	.discogs-item-label {
 		font-size: 0.85em;
 		color: #666;
+	}
+	
+	// Image hover effect for linked images
+	.discogs-item a img {
+		transition: opacity 0.2s;
+		
+		&:hover {
+			opacity: 0.8;
+		}
 	}
 
 	// Pagination
