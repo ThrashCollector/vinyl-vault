@@ -1,0 +1,36 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-discogs-blocks-collection {
+	.discogs-collection-placeholder {
+		border: 2px dashed #ccc;
+		padding: 2rem;
+		text-align: center;
+		background-color: #f9f9f9;
+
+		.discogs-collection-header {
+			margin-bottom: 1.5rem;
+
+			h3 {
+				margin: 0 0 0.5rem 0;
+				font-size: 1.25rem;
+			}
+
+			p {
+				margin: 0;
+				color: #666;
+			}
+		}
+
+		.discogs-collection-preview {
+			p {
+				margin: 0.5rem 0;
+				color: #666;
+				font-size: 0.9em;
+			}
+		}
+	}
+}

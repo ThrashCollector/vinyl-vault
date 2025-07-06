@@ -1,0 +1,131 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-discogs-blocks-collection {
+	padding: 1rem;
+	
+	.discogs-collection-container {
+		width: 100%;
+	}
+
+	.discogs-collection-loading {
+		text-align: center;
+		padding: 2rem;
+		color: #666;
+	}
+
+	.discogs-collection-error {
+		background-color: #f8d7da;
+		border: 1px solid #f5c6cb;
+		color: #721c24;
+		padding: 1rem;
+		border-radius: 4px;
+		margin: 1rem 0;
+	}
+
+	// Grid layout
+	.discogs-collection-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		gap: 1.5rem;
+
+		.discogs-item {
+			background: #f9f9f9;
+			border: 1px solid #e0e0e0;
+			border-radius: 4px;
+			overflow: hidden;
+			transition: transform 0.2s;
+
+			&:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+			}
+
+			.discogs-item-image {
+				width: 100%;
+				height: 200px;
+				object-fit: cover;
+			}
+
+			.discogs-item-details {
+				padding: 1rem;
+			}
+		}
+	}
+
+	// List layout
+	.discogs-collection-list {
+		.discogs-item {
+			display: flex;
+			align-items: center;
+			padding: 1rem;
+			border-bottom: 1px solid #e0e0e0;
+
+			&:last-child {
+				border-bottom: none;
+			}
+
+			.discogs-item-image {
+				width: 80px;
+				height: 80px;
+				object-fit: cover;
+				margin-right: 1rem;
+			}
+
+			.discogs-item-details {
+				flex: 1;
+			}
+		}
+	}
+
+	// Common item styles
+	.discogs-item-artist {
+		font-weight: bold;
+		margin-bottom: 0.25rem;
+	}
+
+	.discogs-item-title {
+		font-size: 0.9em;
+		margin-bottom: 0.25rem;
+	}
+
+	.discogs-item-year,
+	.discogs-item-label {
+		font-size: 0.85em;
+		color: #666;
+	}
+
+	// Pagination
+	.discogs-pagination {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 2rem;
+		gap: 0.5rem;
+
+		button {
+			padding: 0.5rem 1rem;
+			border: 1px solid #ddd;
+			background: white;
+			cursor: pointer;
+			border-radius: 4px;
+
+			&:hover:not(:disabled) {
+				background: #f0f0f0;
+			}
+
+			&:disabled {
+				opacity: 0.5;
+				cursor: not-allowed;
+			}
+		}
+
+		.discogs-page-info {
+			margin: 0 1rem;
+		}
+	}
+}

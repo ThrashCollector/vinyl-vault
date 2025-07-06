@@ -1,0 +1,64 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "discogs-blocks/collection",
+	"version": "1.0.0",
+	"title": "Discogs Collection",
+	"category": "widgets",
+	"icon": "album",
+	"description": "Display your Discogs collection on your website",
+	"example": {},
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"]
+	},
+	"textdomain": "discogs-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"attributes": {
+		"username": {
+			"type": "string",
+			"default": ""
+		},
+		"apiKey": {
+			"type": "string",
+			"default": ""
+		},
+		"displayMode": {
+			"type": "string",
+			"default": "grid"
+		},
+		"itemsPerPage": {
+			"type": "number",
+			"default": 12
+		},
+		"showArtist": {
+			"type": "boolean",
+			"default": true
+		},
+		"showTitle": {
+			"type": "boolean",
+			"default": true
+		},
+		"showYear": {
+			"type": "boolean",
+			"default": true
+		},
+		"showLabel": {
+			"type": "boolean",
+			"default": false
+		},
+		"sortBy": {
+			"type": "string",
+			"default": "added",
+			"enum": ["added", "artist", "title", "year", "label", "catno"]
+		},
+		"sortOrder": {
+			"type": "string",
+			"default": "desc",
+			"enum": ["asc", "desc"]
+		}
+	}
+}
