@@ -1,0 +1,6 @@
+# Ignore compiled translation files
+*.mo
+
+# Keep source translation files
+!*.po
+!*.pot

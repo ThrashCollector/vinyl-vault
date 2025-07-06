@@ -18,11 +18,14 @@ Discogs Blocks is a WordPress Gutenberg block that seamlessly integrates with th
 = Key Features =
 
 * **Multiple Display Modes**: Choose between Grid, List, or Compact layouts
+* **Grid Customization**: Configure 1-8 columns for grid layout
 * **Customizable Display**: Show or hide artist names, album titles, release years, and record labels
 * **Flexible Sorting**: Sort by date added, artist, title, year, label, or catalog number
 * **Sort Order Control**: Display in ascending or descending order
+* **Interactive Links**: Artist names and album titles link directly to their Discogs pages
 * **Pagination Support**: Handle large collections with built-in pagination
-* **Responsive Design**: Looks great on all devices
+* **Responsive Design**: Optimized for all devices with mobile-specific layouts
+* **Multiple Blocks**: Support for multiple collection blocks on the same page
 * **No API Key Required**: Works with public collections out of the box
 * **Private Collection Support**: Optional API key support for private collections
 * **Easy to Use**: Simple configuration through the WordPress block editor

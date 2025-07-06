@@ -43,6 +43,33 @@ function discogs_blocks_init() {
 add_action( 'init', 'discogs_blocks_init' );
 
 /**
+ * Enqueue block assets and localize script
+ */
+function discogs_blocks_enqueue_scripts() {
+	// Only localize if our block script is enqueued
+	if ( wp_script_is( 'discogs-blocks-collection-view-script' ) ) {
+		wp_localize_script(
+			'discogs-blocks-collection-view-script',
+			'discogsBlocksL10n',
+			array(
+				'noUsername' => __( 'No username provided', 'discogs-blocks' ),
+				'loadingCollection' => __( 'Loading collection...', 'discogs-blocks' ),
+				'userNotFound' => __( 'User not found. Please check the username.', 'discogs-blocks' ),
+				'authFailed' => __( 'Authentication failed. Please check your API key.', 'discogs-blocks' ),
+				'rateLimitExceeded' => __( 'Rate limit exceeded. Please try again later or add an API key.', 'discogs-blocks' ),
+				'fetchFailed' => __( 'Failed to fetch collection:', 'discogs-blocks' ),
+				'errorLoading' => __( 'Error loading collection:', 'discogs-blocks' ),
+				'invalidResponse' => __( 'Invalid response from Discogs API', 'discogs-blocks' ),
+				'previous' => __( 'Previous', 'discogs-blocks' ),
+				'next' => __( 'Next', 'discogs-blocks' ),
+				'pageInfo' => __( 'Page %1$s of %2$s', 'discogs-blocks' ),
+			)
+		);
+	}
+}
+add_action( 'wp_enqueue_scripts', 'discogs_blocks_enqueue_scripts', 20 );
+
+/**
  * Server-side rendering callback for the block
  *
  * @param array $attributes Block attributes.

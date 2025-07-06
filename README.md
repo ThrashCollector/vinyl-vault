@@ -9,11 +9,14 @@ Discogs Blocks integrates with the Discogs API to fetch and display your vinyl r
 ## Features
 
 - Display your Discogs collection in Grid, List, or Compact view
+- Customizable grid layout with 1-8 columns
 - Customizable display options (show/hide artist, title, year, label)
 - Sort collections by date added, artist, title, year, label, or catalog number
 - Ascending or descending sort order
+- Direct links to Discogs pages for artists and albums
 - Pagination support for large collections
-- Responsive design
+- Fully responsive design with mobile-optimized layouts
+- Support for multiple collection blocks on the same page
 - No API key required for public collections
 - Optional API key support for private collections
 
@@ -62,8 +65,10 @@ npm run plugin-zip
 3. (Optional) Add your Discogs API token for private collections
 4. Configure display options:
    - Display mode (Grid/List/Compact)
+   - Grid columns (1-8 columns when using Grid mode)
    - Items per page
    - Show/hide artist, title, year, label
+   - Sort by and sort order
 
 ## Requirements
 

@@ -12,7 +12,8 @@
     "lint:js": "wp-scripts lint-js",
     "packages-update": "wp-scripts packages-update",
     "plugin-zip": "wp-scripts plugin-zip",
-    "start": "wp-scripts start"
+    "start": "wp-scripts start",
+    "make-pot": "wp i18n make-pot . languages/discogs-blocks.pot --exclude=node_modules,build,src"
   },
   "devDependencies": {
     "@wordpress/scripts": "^26.19.0"

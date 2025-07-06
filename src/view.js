@@ -5,6 +5,16 @@
 document.addEventListener('DOMContentLoaded', function() {
 	const containers = document.querySelectorAll('.discogs-collection-container');
 	
+	// Helper function to escape HTML
+	function escapeHtml(unsafe) {
+		return unsafe
+			.replace(/&/g, "&amp;")
+			.replace(/</g, "&lt;")
+			.replace(/>/g, "&gt;")
+			.replace(/"/g, "&quot;")
+			.replace(/'/g, "&#039;");
+	}
+	
 	containers.forEach(container => {
 		const username = container.dataset.username;
 		const apiKey = container.dataset.apiKey;
@@ -19,16 +29,15 @@ document.addEventListener('DOMContentLoaded', function() {
 		const gridColumns = parseInt(container.dataset.gridColumns) || 4;
 		
 		if (!username) {
-			container.innerHTML = '<div class="discogs-collection-error">No username provided</div>';
+			container.innerHTML = `<div class="discogs-collection-error">${escapeHtml(window.discogsBlocksL10n?.noUsername || 'No username provided')}</div>`;
 			return;
 		}
 		
 		let currentPage = 1;
 		let totalPages = 1;
-		let allReleases = [];
 		
 		async function fetchCollection(page = 1) {
-			container.innerHTML = '<div class="discogs-collection-loading">Loading collection...</div>';
+			container.innerHTML = `<div class="discogs-collection-loading">${escapeHtml(window.discogsBlocksL10n?.loadingCollection || 'Loading collection...')}</div>`;
 			
 			try {
 				const headers = {
@@ -53,20 +62,20 @@ document.addEventListener('DOMContentLoaded', function() {
 				
 				if (!response.ok) {
 					if (response.status === 404) {
-						throw new Error('User not found. Please check the username.');
+						throw new Error(window.discogsBlocksL10n?.userNotFound || 'User not found. Please check the username.');
 					} else if (response.status === 401) {
-						throw new Error('Authentication failed. Please check your API key.');
+						throw new Error(window.discogsBlocksL10n?.authFailed || 'Authentication failed. Please check your API key.');
 					} else if (response.status === 429) {
-						throw new Error('Rate limit exceeded. Please try again later or add an API key.');
+						throw new Error(window.discogsBlocksL10n?.rateLimitExceeded || 'Rate limit exceeded. Please try again later or add an API key.');
 					}
-					throw new Error(`Failed to fetch collection: ${response.statusText}`);
+					throw new Error((window.discogsBlocksL10n?.fetchFailed || 'Failed to fetch collection:') + ' ' + response.statusText);
 				}
 				
 				const data = await response.json();
 				
 				// Validate response data
 				if (!data || !data.releases || !Array.isArray(data.releases)) {
-					throw new Error('Invalid response from Discogs API');
+					throw new Error(window.discogsBlocksL10n?.invalidResponse || 'Invalid response from Discogs API');
 				}
 				
 				totalPages = data.pagination ? data.pagination.pages : 1;
@@ -77,17 +86,9 @@ document.addEventListener('DOMContentLoaded', function() {
 				
 			} catch (error) {
 				console.error('Discogs Blocks Error:', error);
-				container.innerHTML = `<div class="discogs-collection-error">Error loading collection: ${escapeHtml(error.message)}</div>`;
+				const errorPrefix = window.discogsBlocksL10n?.errorLoading || 'Error loading collection:';
+				container.innerHTML = `<div class="discogs-collection-error">${escapeHtml(errorPrefix)} ${escapeHtml(error.message)}</div>`;
 			}
-		}
-		
-		function escapeHtml(unsafe) {
-			return unsafe
-				.replace(/&/g, "&amp;")
-				.replace(/</g, "&lt;")
-				.replace(/>/g, "&gt;")
-				.replace(/"/g, "&quot;")
-				.replace(/'/g, "&#039;");
 		}
 		
 		function getSortParams(sortBy, sortOrder) {
@@ -167,11 +168,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		function renderPagination() {
 			if (totalPages <= 1) return;
 			
+			const prevText = window.discogsBlocksL10n?.previous || 'Previous';
+			const nextText = window.discogsBlocksL10n?.next || 'Next';
+			const pageInfoText = window.discogsBlocksL10n?.pageInfo || 'Page %1$s of %2$s';
+			const pageInfo = pageInfoText.replace('%1$s', currentPage).replace('%2$s', totalPages);
+			
 			const paginationHtml = `
 				<div class="discogs-pagination">
-					<button class="discogs-prev-page" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''}>Previous</button>
-					<span class="discogs-page-info">Page ${currentPage} of ${totalPages}</span>
-					<button class="discogs-next-page" data-page="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''}>Next</button>
+					<button class="discogs-prev-page" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''}>${escapeHtml(prevText)}</button>
+					<span class="discogs-page-info">${escapeHtml(pageInfo)}</span>
+					<button class="discogs-next-page" data-page="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''}>${escapeHtml(nextText)}</button>
 				</div>
 			`;
 			
