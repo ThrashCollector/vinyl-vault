@@ -136,6 +136,51 @@
 		}
 	}
 
+	// Compact layout
+	.discogs-collection-compact {
+		.discogs-item {
+			display: flex;
+			align-items: center;
+			padding: 0.5rem;
+			border-bottom: 1px solid #e0e0e0;
+
+			&:last-child {
+				border-bottom: none;
+			}
+
+			.discogs-item-image {
+				width: 50px;
+				height: 50px;
+				object-fit: cover;
+				margin-right: 0.75rem;
+				flex-shrink: 0;
+			}
+
+			.discogs-item-details {
+				flex: 1;
+				display: flex;
+				flex-wrap: wrap;
+				align-items: baseline;
+				gap: 0.5rem;
+			}
+			
+			.discogs-item-title {
+				font-size: 0.95em;
+				margin-bottom: 0;
+			}
+			
+			.discogs-item-artist {
+				font-size: 0.85em;
+				margin-bottom: 0;
+			}
+			
+			.discogs-item-year,
+			.discogs-item-label {
+				font-size: 0.8em;
+			}
+		}
+	}
+
 	// Common item styles
 	.discogs-item-artist {
 		font-size: 0.9em;
@@ -211,6 +256,133 @@
 
 		.discogs-page-info {
 			margin: 0 1rem;
+		}
+	}
+	
+	// Mobile styles for all views
+	@media (max-width: 768px) {
+		// List view mobile adjustments
+		.discogs-collection-list {
+			.discogs-item {
+				padding: 0.75rem;
+				
+				.discogs-item-image {
+					width: 60px;
+					height: 60px;
+				}
+			}
+		}
+		
+		// Compact view mobile adjustments
+		.discogs-collection-compact {
+			.discogs-item {
+				padding: 0.5rem 0.75rem;
+				
+				.discogs-item-image {
+					width: 40px;
+					height: 40px;
+					margin-right: 0.5rem;
+				}
+				
+				.discogs-item-details {
+					gap: 0.25rem;
+				}
+				
+				.discogs-item-title {
+					font-size: 1em;
+					width: 100%;
+				}
+				
+				.discogs-item-artist {
+					font-size: 0.9em;
+				}
+				
+				.discogs-item-year,
+				.discogs-item-label {
+					font-size: 0.85em;
+				}
+			}
+		}
+		
+		// Grid view mobile adjustments
+		.discogs-collection-grid {
+			gap: 1rem;
+			
+			.discogs-item {
+				.discogs-item-image {
+					height: 150px;
+				}
+				
+				.discogs-item-details {
+					padding: 0.75rem;
+				}
+			}
+		}
+		
+		// Pagination mobile adjustments
+		.discogs-pagination {
+			gap: 0.25rem;
+			
+			button {
+				padding: 0.5rem 0.75rem;
+				font-size: 0.9em;
+			}
+			
+			.discogs-page-info {
+				margin: 0 0.5rem;
+				font-size: 0.9em;
+			}
+		}
+	}
+	
+	// Small mobile styles
+	@media (max-width: 480px) {
+		padding: 0.5rem;
+		
+		// List view - stack on very small screens
+		.discogs-collection-list {
+			.discogs-item {
+				flex-direction: column;
+				text-align: center;
+				padding: 1rem;
+				
+				.discogs-item-image {
+					width: 120px;
+					height: 120px;
+					margin-right: 0;
+					margin-bottom: 0.75rem;
+				}
+			}
+		}
+		
+		// Compact view - ultra compact
+		.discogs-collection-compact {
+			.discogs-item {
+				padding: 0.375rem 0.5rem;
+			}
+		}
+		
+		// Grid view - smaller images
+		.discogs-collection-grid {
+			.discogs-item {
+				.discogs-item-image {
+					height: 120px;
+				}
+			}
+		}
+		
+		// Pagination - more compact
+		.discogs-pagination {
+			margin-top: 1rem;
+			
+			button {
+				padding: 0.375rem 0.5rem;
+				font-size: 0.85em;
+			}
+			
+			.discogs-page-info {
+				font-size: 0.85em;
+			}
 		}
 	}
 }
