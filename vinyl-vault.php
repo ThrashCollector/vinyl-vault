@@ -137,10 +137,3 @@ function vinyl_vault_render_callback( $attributes ) {
 	return $block_content;
 }
 
-/**
- * Load plugin textdomain
- */
-function vinyl_vault_load_textdomain() {
-	load_plugin_textdomain( 'vinyl-vault', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-}
-add_action( 'init', 'vinyl_vault_load_textdomain' );
