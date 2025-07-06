@@ -153,8 +153,16 @@ document.addEventListener('DOMContentLoaded', function() {
 				}
 				
 				if (showLabel && info.labels && info.labels.length > 0) {
-					const labelNames = info.labels.map(label => escapeHtml(label.name)).join(', ');
-					html += `<div class="discogs-item-label">${labelNames}</div>`;
+					// Create label links
+					const labelLinks = info.labels.map(label => {
+						// Labels can have an ID for direct linking
+						if (label.id) {
+							const labelUrl = `https://www.discogs.com/label/${label.id}`;
+							return `<a href="${escapeHtml(labelUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label.name)}</a>`;
+						}
+						return escapeHtml(label.name);
+					}).join(', ');
+					html += `<div class="discogs-item-label">${labelLinks}</div>`;
 				}
 				
 				html += '</div></div>';
