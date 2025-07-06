@@ -169,20 +169,28 @@ document.addEventListener('DOMContentLoaded', function() {
 			
 			const paginationHtml = `
 				<div class="discogs-pagination">
-					<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>Previous</button>
+					<button class="discogs-prev-page" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''}>Previous</button>
 					<span class="discogs-page-info">Page ${currentPage} of ${totalPages}</span>
-					<button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Next</button>
+					<button class="discogs-next-page" data-page="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''}>Next</button>
 				</div>
 			`;
 			
 			container.insertAdjacentHTML('beforeend', paginationHtml);
+			
+			// Add event listeners to the pagination buttons for this specific container
+			const pagination = container.querySelector('.discogs-pagination');
+			if (pagination) {
+				pagination.addEventListener('click', function(e) {
+					if (e.target.matches('button:not(:disabled)')) {
+						const page = parseInt(e.target.dataset.page);
+						if (page && page >= 1 && page <= totalPages) {
+							currentPage = page;
+							fetchCollection(page);
+						}
+					}
+				});
+			}
 		}
-		
-		window.changePage = function(page) {
-			if (page < 1 || page > totalPages) return;
-			currentPage = page;
-			fetchCollection(page);
-		};
 		
 		// Initial fetch
 		fetchCollection();
